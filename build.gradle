@@ -36,8 +36,7 @@ application {
     mainClassName = javaMainClass
 }
 
-/*
-bootRun {
+run {
 	systemProperties System.getProperties()
 	environment System.getenv()
-}*/
+}

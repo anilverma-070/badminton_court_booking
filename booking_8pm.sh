@@ -1,1 +1,1 @@
-java "-DloginUser=narsingraoch@gmail.com" "-DloginPwd=114455" "-DcourtName=Badminton Courts 5-8" "-Dtimeslot=20:00" -DmaxRetryDuration=1 -jar /Users/anilk/Desktop/workspace/badminton_court_booking/build/libs/badminton_court_booking-0.0.1-SNAPSHOT-all.jar
+java "-DloginUser=narsingraoch@gmail.com" "-DloginPwd=114455" "-DcourtName=Badminton Courts 5-8" "-Dtimeslot=20:00" -DmaxRetryDuration=30 -jar /Users/anilk/Desktop/workspace/badminton_court_booking/build/libs/badminton_court_booking-0.0.1-SNAPSHOT-all.jar

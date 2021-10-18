@@ -2,11 +2,15 @@ package com.orienlabs.booking;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
+import com.gargoylesoftware.htmlunit.BrowserVersion;
+//import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Main {
@@ -26,11 +30,12 @@ public class Main {
 		String bookingTimeSlot= System.getProperty("timeslot", "07:00");
 		int maxRetryDurationMinutes= Integer.parseInt(System.getProperty("maxRetryDuration", "30"));
 		
-		WebDriver w = new ChromeDriver();
+		//WebDriver w = new ChromeDriver();
+		WebDriver w = new HtmlUnitDriver(BrowserVersion.BEST_SUPPORTED, true);
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> w.quit()));
 		
 		w.navigate().to(bookingHomeUrl);
-		w.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		w.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		
 		// Login
 		//narsingraoch@gmail.com
@@ -49,7 +54,7 @@ public class Main {
 			
 			if(System.currentTimeMillis() - startTime > (maxRetryDurationMinutes * 60 * 1000))
 			{
-				System.out.println("Timeout of " + maxRetryDurationMinutes + " minute/s hit. Total " + totalSlotsBooked + "slots were booked.");
+				System.out.println("Timeout of " + maxRetryDurationMinutes + " minute/s hit. Total " + totalSlotsBooked + " slots were booked.");
 				System.exit(0);
 			}
 			

@@ -113,7 +113,7 @@ public class Main {
 
 		try {
 			System.out.print("Looking for slots in the week of ");
-			System.out.println(w.findElement(By.id("ctl00_MainContent_startDate")).getText());
+			System.out.println(w.findElement(By.cssSelector("td.date")).getText());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

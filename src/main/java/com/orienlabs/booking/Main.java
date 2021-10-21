@@ -59,10 +59,12 @@ public class Main {
 			}
 			
 			//scan current week + next 2 weeks for any available slot
-			int availableSlotsSize= w.findElements(By.xpath("//table[@id='slotsGrid']//tr/td[.='" + bookingTimeSlot + "']/..//input[@value='Available']")).size();
-			System.out.println("Found slots in the week: " + availableSlotsSize);
+			List<WebElement> availableSlots= w.findElements(By.xpath("//table[@id='slotsGrid']//tr/td[.='" + bookingTimeSlot + "']/..//input[@value='Available']"));
+			
 				
-			if (availableSlotsSize == 0)
+			if (availableSlots.size() > 0)
+				System.out.println("Found slots in the week: " + availableSlots.size());
+			else
 			{
 				System.out.println("No available slots found right now, trying again...");
 				w.navigate().refresh();
@@ -70,7 +72,7 @@ public class Main {
 			}
 			
 			//check if slot is still available
-			List<WebElement> availableSlots = w.findElements(By.xpath("//table[@id='slotsGrid']//tr/td[.='" + bookingTimeSlot + "']/..//input[@value='Available']"));
+			//List<WebElement> availableSlots = w.findElements(By.xpath("//table[@id='slotsGrid']//tr/td[.='" + bookingTimeSlot + "']/..//input[@value='Available']"));
 			if (availableSlots.size() > 0) {
 				availableSlots.get(0).click();
 
@@ -94,6 +96,8 @@ public class Main {
 					if(totalSlotsBooked >= exitAfterBookingCount)
 						System.exit(0);
 				}
+				else
+					System.out.println("Ah...slots were out before they could be booked...");
 			}
 			
 			goToCalender();

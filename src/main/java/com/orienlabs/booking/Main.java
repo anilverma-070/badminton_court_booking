@@ -35,7 +35,7 @@ public class Main {
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> w.quit()));
 		
 		w.navigate().to(bookingHomeUrl);
-		w.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		w.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		// Login
 		//narsingraoch@gmail.com
@@ -77,7 +77,7 @@ public class Main {
 				availableSlots.get(0).click();
 
 				// check if slots are still available
-				List<WebElement> availableSlotsOnDay = w.findElements(By.xpath("//input[@value='" + bookingTimeSlot + "']"));
+				List<WebElement> availableSlotsOnDay = w.findElements(By.xpath("//input[@value='" + bookingTimeSlot + "']"));//System.out.println(w.getPageSource());
 				if (availableSlotsOnDay.size() > 0) {
 					// click on timeslot button to book
 					availableSlotsOnDay.get(0).click();
